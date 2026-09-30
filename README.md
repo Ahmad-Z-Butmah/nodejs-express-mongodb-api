@@ -1,82 +1,91 @@
-# Nodejs Expressjs MongoDB Ready-to-use API Project Structure
+# Node.js Express MongoDB REST API
 
-[![Author](http://img.shields.io/badge/author-@maitraysuthar-blue.svg)](https://www.linkedin.com/in/maitray-suthar/) [![GitHub license](https://img.shields.io/github/license/maitraysuthar/rest-api-nodejs-mongodb.svg)](https://github.com/maitraysuthar/rest-api-nodejs-mongodb/blob/master/LICENSE) ![GitHub repo size](https://img.shields.io/github/repo-size/maitraysuthar/rest-api-nodejs-mongodb) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b3eb80984adc4671988ffb22d6ad83df)](https://www.codacy.com/manual/maitraysuthar/rest-api-nodejs-mongodb?utm_source=github.com&utm_medium=referral&utm_content=maitraysuthar/rest-api-nodejs-mongodb&utm_campaign=Badge_Coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b3eb80984adc4671988ffb22d6ad83df)](https://www.codacy.com/manual/maitraysuthar/rest-api-nodejs-mongodb?utm_source=github.com&utm_medium=referral&utm_content=maitraysuthar/rest-api-nodejs-mongodb&utm_campaign=Badge_Grade) ![Travis (.com)](https://img.shields.io/travis/com/maitraysuthar/rest-api-nodejs-mongodb)
+A backend REST API project built with Node.js, Express.js, and MongoDB.
 
-A ready-to-use boilerplate for REST API Development with Node.js, Express, and MongoDB
+The project provides a structured backend foundation for building web and mobile applications, with authentication, authorization, CRUD operations, validation, and database integration.
 
-## Getting started
+## Overview
 
-This is a basic API skeleton written in JavaScript ES2015. Very useful to building a RESTful web APIs for your front-end platforms like Android, iOS or JavaScript frameworks (Angular, Reactjs, etc).
+The API provides the main backend functionality required for a typical database-driven application.
 
-This project will run on **NodeJs** using **MongoDB** as database. I had tried to maintain the code structure easy as any beginner can also adopt the flow and start building an API. Project is open for suggestions, Bug reports and pull requests.
+The system includes:
 
-## Advertise for Job/Work Contract
+* User registration and login
+* JWT-based authentication
+* Password hashing
+* Role-based authorization
+* Book management
+* CRUD operations
+* Request validation
+* Standard API responses
+* MongoDB database integration
+* Email and OTP support
+* Postman API collection
 
-I am open for a good job or work contract. You can contact me directly on my email ([maitraysuthar@gmail.com](mailto:maitraysuthar@gmail.com "maitraysuthar@gmail.com")) or you can download my CV from my personal [website](https://maitraysuthar.github.io/portfolio/).
+## Main Workflows
 
-## Buy me a Coffee
+The authentication and API workflow follows a structured process:
 
-If you consider my project as helpful stuff, You can appreciate me or my hard work and time spent to create this helpful structure with buying me a coffee.
-
-<a href="https://www.buymeacoffee.com/36GgOoQ2f" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
-
-## Features
-
-- Basic Authentication (Register/Login with hashed password)
-- Account confirmation with 4 (Changeable) digit OTP.
-- Email helper ready just import and use.
-- JWT Tokens, make requests with a token after login with `Authorization` header with value `Bearer yourToken` where `yourToken` will be returned in Login response.
-- Pre-defined response structures with proper status codes.
-- Included CORS.
-- **Book** example with **CRUD** operations.
-- Validations added.
-- Included API collection for Postman.
-- Light-weight project.
-- Test cases with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
-- Code coverage with [Istanbuljs (nyc)](https://istanbul.js.org/).
-- Included CI (Continuous Integration) with [Travis CI](https://travis-ci.org).
-- Linting with [Eslint](https://eslint.org/).
-
-## Software Requirements
-
-- Node.js **8+**
-- MongoDB **3.6+** (Recommended **4+**)
-
-## How to install
-
-### Using Git (recommended)
-
-1.  Clone the project from github. Change "myproject" to your project name.
-
-```bash
-git clone https://github.com/maitraysuthar/rest-api-nodejs-mongodb.git ./myproject
+```text
+User Registration
+        |
+        v
+Account Verification
+        |
+        v
+User Login
+        |
+        v
+JWT Token Generated
+        |
+        v
+Authenticated API Request
+        |
+        v
+Authorization Middleware
+        |
+        v
+Controller
+        |
+        v
+MongoDB
 ```
 
-### Using manual download ZIP
+## User Authentication
 
-1.  Download repository
-2.  Uncompress to your desired directory
+The API provides basic authentication functionality.
 
-### Install npm dependencies after installing (Git or manual download)
+Users can:
 
-```bash
-cd myproject
-npm install
-```
+* Create an account
+* Log in using their credentials
+* Verify their account using an OTP
+* Receive a JWT authentication token
+* Access protected API endpoints
+* Use the token with the `Authorization: Bearer <token>` header
 
-### Setting up environments
+Passwords are hashed before being stored in the database.
 
-1.  You will find a file named `.env.example` on root directory of project.
-2.  Create a new file by copying and pasting the file and then renaming it to just `.env`
-    ```bash
-    cp .env.example .env
-    ```
-3.  The file `.env` is already ignored, so you never commit your credentials.
-4.  Change the values of the file to your environment. Helpful comments added to `.env.example` file to understand the constants.
+## Book Management
 
-## Project structure
+The project includes a Book module as an example of a database-driven resource.
 
-```sh
+The API supports:
+
+* Create a book
+* View books
+* View a specific book
+* Update a book
+* Delete a book
+* Validate book data
+
+The Book module demonstrates how models, controllers, and routes work together.
+
+## API Structure
+
+The backend follows a modular structure separating routes, controllers, models, middleware, and helper functions.
+
+```text
 .
 ├── app.js
 ├── package.json
@@ -93,7 +102,7 @@ npm install
 │   ├── auth.js
 │   └── book.js
 ├── middlewares
-│   ├── jwt.js
+│   └── jwt.js
 ├── helpers
 │   ├── apiResponse.js
 │   ├── constants.js
@@ -109,65 +118,192 @@ npm install
         └── style.css
 ```
 
-## How to run
+## System Architecture
 
-### Running API server locally
+The API follows a simple layered backend architecture:
 
-```bash
-npm run dev
+```text
+Client
+  |
+  v
+REST API
+  |
+  v
+Express.js
+  |
+  +--> Routes
+  |
+  +--> Middleware
+  |
+  +--> Controllers
+  |
+  +--> Models
+  |
+  v
+MongoDB
 ```
 
-You will know server is running by checking the output of the command `npm run dev`
+## Backend
 
-```bash
-Connected to mongodb:YOUR_DB_CONNECTION_STRING
-App is running ...
+The Express.js backend handles:
 
-Press CTRL + C to stop the process.
-```
+* HTTP requests and responses
+* Authentication
+* Authorization
+* API routing
+* Business logic
+* Database operations
+* Request validation
+* Error and response handling
 
-**Note:** `YOUR_DB_CONNECTION_STRING` will be your MongoDB connection string.
+## Authentication & Authorization
 
-### Creating new models
+JWT is used to protect authenticated API endpoints.
 
-If you need to add more models to the project just create a new file in `/models/` and use them in the controllers.
+After successful login, the API returns a JWT token that can be included in subsequent requests.
 
-### Creating new routes
+Protected routes use middleware to verify the token before allowing access to the requested resource.
 
-If you need to add more routes to the project just create a new file in `/routes/` and add it in `/routes/api.js` it will be loaded dynamically.
+## Database
 
-### Creating new controllers
+MongoDB is used as the project's database.
 
-If you need to add more controllers to the project just create a new file in `/controllers/` and use them in the routes.
+The application uses models to define and interact with database documents.
 
-## Tests
+Main models include:
 
-### Running Test Cases
+* User
+* Book
+
+## API Testing
+
+The project includes a Postman API collection for testing the available endpoints.
+
+The API can be tested by sending requests for:
+
+* Authentication
+* User operations
+* Book CRUD operations
+* Protected endpoints
+
+## Validation & Error Handling
+
+The API includes request validation and predefined response structures.
+
+HTTP status codes are used to indicate the result of API operations.
+
+This provides a consistent structure for clients consuming the REST API.
+
+## Testing
+
+The project includes automated tests using:
+
+* Mocha
+* Chai
+
+Tests cover authentication and Book API functionality.
+
+Code coverage is also supported through Istanbul/NYC.
+
+Run the tests with:
 
 ```bash
 npm test
 ```
 
-You can set custom command for test at `package.json` file inside `scripts` property. You can also change timeout for each assertion with `--timeout` parameter of mocha command.
+## Code Quality
 
-### Creating new tests
+ESLint is included to help maintain consistent JavaScript code quality.
 
-If you need to add more test cases to the project just create a new file in `/test/` and run the command.
-
-## ESLint
-
-### Running Eslint
+Run linting with:
 
 ```bash
 npm run lint
 ```
 
-You can set custom rules for eslint in `.eslintrc.json` file, Added at project root.
+## Technologies
 
-## Bugs or improvements
+* Node.js
+* Express.js
+* JavaScript (ES2015)
+* MongoDB
+* Mongoose
+* JWT
+* REST APIs
+* Mocha
+* Chai
+* ESLint
+* Postman
+* npm
 
-Every project needs improvements, Feel free to report any bugs or improvements. Pull requests are always welcome.
+## Environment Configuration
 
-## License
+Environment variables are used for sensitive configuration.
 
-This project is open-sourced software licensed under the MIT License. See the LICENSE file for more information.
+Create a `.env` file based on `.env.example`.
+
+Environment variables can be used for:
+
+* MongoDB connection
+* JWT secret
+* Email configuration
+* Application configuration
+
+Sensitive credentials should not be committed to the repository.
+
+## Running the Project
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Configure environment variables
+
+Create a `.env` file from the provided example:
+
+```bash
+cp .env.example .env
+```
+
+Update the values according to your local environment.
+
+### Start the development server
+
+```bash
+npm run dev
+```
+
+The API will connect to MongoDB and start the Express.js server.
+
+## Key Features
+
+This project demonstrates:
+
+* Node.js backend development
+* Express.js REST API development
+* MongoDB database integration
+* JWT authentication
+* Authorization middleware
+* CRUD operations
+* Modular backend architecture
+* Request validation
+* API testing
+* Environment configuration
+* Basic automated testing
+
+## Project Purpose
+
+The project was developed to practice building a structured REST API using Node.js and Express.js, while applying common backend development concepts such as authentication, database operations, middleware, API routing, and testing.
+
+## Security
+
+Sensitive information should not be committed to the repository.
+
+Environment variables should be used for:
+
+* Database credentials
+* JWT secrets
+* Email credentials
+* External service configuration
